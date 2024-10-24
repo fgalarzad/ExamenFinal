@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Pacientes</title>
+</head>
+<body>
+    <h1>Lista de Pacientes</h1>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Correo Electrónico</th>
+                <th>Alergias</th>
+				<th>Tratamientos Previos</th>
+				<th>Historial Médico</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="paciente : ${pacientes}">
+                <td th:text="${paciente.idpaciente}"></td>
+                <td th:text="${paciente.nombre}"></td>
+                <td th:text="${paciente.direccion}"></td>
+                <td th:text="${paciente.telefono}"></td>
+                <td th:text="${paciente.correo}"></td>
+                <td th:text="${paciente.alergias}"></td>
+				<td th:text="${paciente.tratamientosprevios}"></td>
+				<td th:text="${paciente.historialMedico != null ? paciente.historialMedico.idhistorial : 'Sin Historial'}"></td>
+                <td>
+                    <a th:href="@{/historiales/gestionar/{id}(id=${paciente.idpaciente})}">Gestionar Historial</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+	<a th:href="@{/registro-paciente}">Registrar nuevo Paciente</a>
+</body>
+</html>

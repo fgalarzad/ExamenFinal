@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial Médico del Paciente</title>
+</head>
+<body>
+    <h1>Historial Médico de <span th:text="${paciente.nombre}"></span></h1>
+    
+	<h3>Historial Médico</h3>
+	<p>Tratamientos Recibidos: <span th:text="${paciente.historialMedico.tratamientosrecibidos}"></span></p>
+	<p>Diagnóstico: <span th:text="${paciente.historialMedico.diagnostico}"></span></p>
+	<p>Fecha: <span th:text="${paciente.historialMedico.fecha}"></span></p>
+	<p>Radiografías: <span th:text="${paciente.historialMedico.radiografias}"></span></p>
+
+	<h3>Médico Asignado</h3>
+	        <div th:if="${paciente.historialMedico.medico != null}">
+	            <p>
+	                Médico: <span th:text="${paciente.historialMedico.medico.nombre}"></span> - 
+	                Especialidad: <span th:text="${paciente.historialMedico.medico.especialidad}"></span>
+	            </p>
+	        </div>
+	        <div th:if="${paciente.historialMedico.medico == null}">
+	            <p>No hay médico asignado a este historial médico.</p>
+	        </div>
+	    </div>
+
+	    <p><a th:href="@{/pacientes}">Volver a la lista de pacientes</a></p>
+
+</body>
+</html>

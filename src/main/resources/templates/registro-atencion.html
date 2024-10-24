@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Atención</title>
+</head>
+<body>
+    <h1>Registrar Nueva Atención</h1>
+    
+    <form th:action="@{/atenciones/registrar}" th:object="${atencion}"method="post">
+        <label for="fechaAtencion">Fecha de Atención:</label>
+        <input type="date" id="fechaAtencion" name="fechaAtencion" th:field="*{fechaAtencion}" required><br>
+        
+        <label for="motivoConsulta">Motivo de la Consulta:</label>
+        <input type="text" id="motivoConsulta" name="motivoConsulta" th:field="*{motivoConsulta}" required><br>
+        
+        <label for="diagnosticoPreliminar">Diagnóstico Preliminar:</label>
+        <input type="text" id="diagnosticoPreliminar" name="diagnosticoPreliminar" th:field="*{diagnosticoPreliminar}"required><br>
+        
+        <label for="tratamientoSugerido">Tratamiento Sugerido:</label>
+        <input type="text" id="tratamientoSugerido" name="tratamientoSugerido" th:field="*{tratamientoSugerido}" required><br>
+        
+        <label for="observaciones">Observaciones:</label>
+        <textarea id="observaciones" name="observaciones" th:field="*{observaciones}"></textarea><br>
+        
+		<label for="medicoId">Seleccionar Médico:</label>
+		    <select id="medicoId" name="medicoId" required>
+		        <option th:each="medico : ${medicos}" th:value="${medico.idMedicos}" th:text="${medico.nombre}"></option>
+		    </select>
+        
+        <label for="paciente">Paciente:</label>
+        <select id="paciente" name="paciente" required>
+            <option th:each="paciente : ${pacientes}" th:value="${paciente.idpaciente}" th:text="${paciente.nombre}"></option>
+        </select><br>
+        
+        <button type="submit">Registrar Atención</button>
+    </form>
+</body>
+</html>
